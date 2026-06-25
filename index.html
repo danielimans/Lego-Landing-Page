@@ -3,188 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGO - What's on sale?</title>
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Custom Styles -->
+    <title>LEGO - What's on Sale?</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- ===== Navigation Header ===== -->
-    <header class="header sticky-top">
-        <div class="container-xl">
-            <nav class="navbar navbar-expand-lg px-0">
-                <!-- Logo -->
-                <a class="navbar-brand me-0" href="#home">
-                    <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="logo-img">
-                </a>
-
-                <!-- Hamburger Toggle -->
-                <button class="navbar-toggler border-0 shadow-none ms-auto" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#mainNavMenu"
-                        aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Nav Links -->
-                <div class="collapse navbar-collapse" id="mainNavMenu">
-                    <ul class="navbar-nav ms-0 me-0">
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom active" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom" href="#shop">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom" href="#discover">Discover</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom" href="#help">Help</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom" href="#sale">Sale</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-custom" href="#about">About</a>
-                        </li>
-                    </ul>
-
-                    <!-- Header Icons -->
-                    <div class="d-flex align-items-center gap-3 ms-auto mt-3 mt-lg-0">
-                        <button class="icon-btn" aria-label="Search">
-                            <img src="Assets/search.png" alt="Search" class="icon-img">
-                        </button>
-                        <button class="icon-btn" aria-label="Wishlist">
-                            <img src="Assets/Icon awesome-heart.png" alt="Wishlist" class="icon-img">
-                        </button>
-                        <button class="icon-btn" aria-label="Cart">
-                            <img src="Assets/Icon feather-shopping-bag.png" alt="Cart" class="icon-img">
-                        </button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-lg">
+            <a class="navbar-brand" href="#home">
+                <div class="lego-logo">LEGO</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#discover">Discover</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
+                    <li class="nav-item"><a class="nav-link sale" href="#sale">Sale</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                </ul>
+                <div class="navbar-icons">
+                    <div class="navbar-icon icon-search" title="Search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="navbar-icon icon-heart" title="Wishlist">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="navbar-icon icon-bag" title="Shopping Bag">
+                        <i class="fas fa-shopping-bag"></i>
                     </div>
                 </div>
-            </nav>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- ===== Hero Section ===== -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-background" style="background-image: url('Assets/Main Banner.png')"></div>
-        <div class="container-xl h-100">
+        <div class="container-lg">
             <div class="hero-content">
-                <!-- Hero Text -->
                 <div class="hero-text">
-                    <h1 class="hero-title">What's on sale?</h1>
-                    <p class="hero-subtitle">Save on gifts for next year with our end-of-year sale now</p>
-                    <button class="btn btn-shop">
-                        Shop now
-                        <i class="bi bi-chevron-right ms-1"></i>
-                    </button>
+                    <h1>What's on sale?</h1>
+                    <p>Save on gifts for next year with our end-of-year sale now</p>
+                    <a href="#sale" class="btn-shop-now">Shop now</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Placeholder for blue LEGO figure image -->
+                    <div style="width: 100%; height: 280px; background-color: var(--light-gray); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+                        [LEGO Figure Image]
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Values Section ===== -->
-    <section class="values py-5" id="shop">
-        <div class="container-xl">
-            <!-- Section Header -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-7 text-center">
-                    <h2 class="section-title">Together, we can rebuild the world</h2>
-                    <p class="section-description">
-                        At the LEGO Group, we're playing our part in building a sustainable future and creating a
-                        better world for our children to inherit. Find out how we're joining forces with others to
-                        have a lasting impact and inspire the children of today to become the builders of tomorrow.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Cards Row -->
-            <div class="row g-4">
+    <!-- Content Section -->
+    <section class="content-section" id="shop">
+        <div class="container-lg">
+            <h2 class="section-title">Together, we can rebuild the world</h2>
+            <p class="section-description">
+                At the LEGO Group, we're playing our part in building a sustainable future and creating a better world for our children to inherit. Find out how we're joining forces with others to have a lasting impact and inspire the children of today to become the builders of tomorrow.
+            </p>
+            
+            <div class="cards-container">
                 <!-- Children Card -->
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-image children-image">
-                            <img src="Assets/children.png" alt="Children illustration" class="card-img-top card-img-cover">
-                        </div>
-                        <div class="card-body card-content">
-                            <h3 class="card-title">Children</h3>
-                            <p class="card-text">
-                                We believe every child should have an opportunity to achieve their potential.
-                                And learning through play is a powerful way to develop skills that will allow
-                                children to tackle challenges that lie ahead.
-                            </p>
-                            <a href="#" class="read-more">Read more <span>→</span></a>
-                        </div>
+                <div class="card-item card-blue-light">
+                    <div class="card-image" style="background-color: var(--light-blue); display: flex; align-items: center; justify-content: center;">
+                        [Children Image]
+                    </div>
+                    <div class="card-content">
+                        <h3>Children</h3>
+                        <p>We believe every child should have an opportunity to achieve their potential. And learning through play is a powerful way to develop skills that will allow children to tackle challenges that lie ahead.</p>
+                        <a href="#" class="read-more">Read more</a>
                     </div>
                 </div>
 
                 <!-- Environment Card -->
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-image environment-image">
-                            <img src="Assets/environment.png" alt="Environment illustration" class="card-img-top card-img-cover">
-                        </div>
-                        <div class="card-body card-content">
-                            <h3 class="card-title">Environment</h3>
-                            <p class="card-text">
-                                We are committed to protecting the environment and the planet our children will
-                                inherit. It's not enough to just reduce our impact on the environment, we want
-                                to go further and have a positive impact.
-                            </p>
-                            <a href="#" class="read-more">Read more <span>→</span></a>
-                        </div>
+                <div class="card-item card-blue-dark">
+                    <div class="card-image" style="background-color: var(--dark-blue); display: flex; align-items: center; justify-content: center;">
+                        [Environment Image]
+                    </div>
+                    <div class="card-content">
+                        <h3>Environment</h3>
+                        <p>We are committed to protecting the environment and the planet our children will inherit. It's not enough to just reduce our impact on the environment, we want to go further and have a positive impact.</p>
+                        <a href="#" class="read-more">Read more</a>
                     </div>
                 </div>
 
                 <!-- People Card -->
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-image people-image">
-                            <img src="Assets/people.png" alt="People illustration" class="card-img-top card-img-cover">
-                        </div>
-                        <div class="card-body card-content">
-                            <h3 class="card-title">People</h3>
-                            <p class="card-text">
-                                We value the people, partners and suppliers who make LEGO play experiences
-                                possible and we work hard to make our workplaces inclusive, safe and motivating.
-                            </p>
-                            <a href="#" class="read-more">Read more <span>→</span></a>
-                        </div>
+                <div class="card-item card-blue-light">
+                    <div class="card-image" style="background-color: var(--light-blue); display: flex; align-items: center; justify-content: center;">
+                        [People Image]
+                    </div>
+                    <div class="card-content">
+                        <h3>People</h3>
+                        <p>We value the people, partners and suppliers who make LEGO® play experiences possible and we work hard to make our workplaces inclusive, safe and motivating.</p>
+                        <a href="#" class="read-more">Read more</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Footer ===== -->
-    <footer class="footer py-5">
-        <div class="container-xl">
-            <div class="row g-4 mb-5">
-                <!-- Brand Column -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="footer-logo mb-3">
-                        <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="footer-logo-img">
+    <!-- Footer -->
+    <footer id="about">
+        <div class="container-lg">
+            <div class="footer-content">
+                <!-- Left Column - Logo & Location -->
+                <div class="footer-column footer-logo-section">
+                    <div class="footer-logo">LEGO</div>
+                    <div class="footer-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Malaysia
                     </div>
-                    <div class="footer-location mb-3">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        <span class="ms-1">Malaysia</span>
-                    </div>
-                    <p class="footer-link"><a href="#">Find inspiration</a></p>
-                    <p class="footer-link"><a href="#">LEGO Catalogues</a></p>
+                    <p style="color: #999; font-size: 0.85rem;">Find inspiration</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><a href="#">LEGO Catalogues</a></li>
+                    </ul>
                 </div>
 
                 <!-- About Us -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h4 class="footer-title">ABOUT US</h4>
-                    <ul class="footer-links list-unstyled">
+                <div class="footer-column">
+                    <h5>About Us</h5>
+                    <ul>
                         <li><a href="#">About the LEGO Group</a></li>
                         <li><a href="#">LEGO® news</a></li>
                         <li><a href="#">Sustainability</a></li>
@@ -196,23 +150,23 @@
                 </div>
 
                 <!-- Support -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h4 class="footer-title">SUPPORT</h4>
-                    <ul class="footer-links list-unstyled">
+                <div class="footer-column">
+                    <h5>Support</h5>
+                    <ul>
                         <li><a href="#">Contact us</a></li>
                         <li><a href="#">Find building instructions</a></li>
                         <li><a href="#">Replacement parts</a></li>
                         <li><a href="#">Deliveries and returns</a></li>
                         <li><a href="#">Payment methods</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
                         <li><a href="#">Product recalls</a></li>
                     </ul>
                 </div>
 
                 <!-- Attractions -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <h4 class="footer-title">ATTRACTIONS</h4>
-                    <ul class="footer-links list-unstyled">
+                <div class="footer-column">
+                    <h5>Attractions</h5>
+                    <ul>
                         <li><a href="#">LEGO® House</a></li>
                         <li><a href="#">LEGOLAND® Parks</a></li>
                         <li><a href="#">LEGOLAND Discovery Centers</a></li>
@@ -220,9 +174,9 @@
                 </div>
 
                 <!-- More From Us -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <h4 class="footer-title">MORE FROM US</h4>
-                    <ul class="footer-links list-unstyled">
+                <div class="footer-column">
+                    <h5>More From Us</h5>
+                    <ul>
                         <li><a href="#">LEGO® LIFE</a></li>
                         <li><a href="#">LEGO Education</a></li>
                         <li><a href="#">LEGO Ideas</a></li>
@@ -233,46 +187,22 @@
             </div>
 
             <!-- Footer Bottom -->
-            <div class="footer-bottom pt-4">
-                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-                    <div>
-                        <h4 class="social-title mb-3">FOLLOW US</h4>
-                        <div class="social-icons d-flex gap-3">
-                            <!-- Facebook -->
-                            <a href="#" class="social-icon" aria-label="Facebook">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                            </a>
-                            <!-- Twitter / X -->
-                            <a href="#" class="social-icon" aria-label="Twitter">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M23.953 4.57a10 10 0 002.856-3.51 9.97 9.97 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417a9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                </svg>
-                            </a>
-                            <!-- Instagram -->
-                            <a href="#" class="social-icon" aria-label="Instagram">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="currentColor"/>
-                                    <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <!-- YouTube -->
-                            <a href="#" class="social-icon" aria-label="YouTube">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+            <div class="footer-bottom">
+                <p class="footer-text">&copy; 2024 The LEGO Group. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle (Popper included) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
