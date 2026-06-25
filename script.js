@@ -47,10 +47,12 @@ function initializeScrollEffects() {
 
     // Update header shadow on scroll
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 0) {
-            header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.12)';
+        if (window.pageYOffset > 10) {
+            header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+            header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.08)';
         } else {
-            header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+            header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
         }
 
         // Update active nav link based on scroll position
