@@ -1,46 +1,71 @@
 /* ===========================
-   MOBILE NAVIGATION
+   INITIALIZATION
    =========================== */
 
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-link');
-
-// toggle mobile menu
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// close menu when a link is clicked
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
-// close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.header')) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    initializeNavigation();
+    initializeScrollEffects();
+    initializeIntersectionObserver();
+    initializeButtonInteractions();
+    initializeIconAnimations();
+    setViewportHeight();
 });
 
 /* ===========================
-   SMOOTH SCROLL & ACTIVE NAV
+   MOBILE NAVIGATION
    =========================== */
 
-// update active nav link on scroll
-window.addEventListener('scroll', () => {
+function initializeNavigation() {
+    const navToggler = document.querySelector('.navbar-toggler');
+    const navMenu = document.getElementById('mainNavMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navToggler.classList.contains('collapsed') === false) {
+                navToggler.click();
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar') && navMenu.classList.contains('show')) {
+            navToggler.click();
+        }
+    });
+}
+
+/* ===========================
+   SCROLL EFFECTS & ACTIVE NAV
+   =========================== */
+
+function initializeScrollEffects() {
+    const header = document.querySelector('.header');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Update header shadow on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 0) {
+            header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.12)';
+        } else {
+            header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+        }
+
+        // Update active nav link based on scroll position
+        updateActiveNavLink(navLinks);
+    }, { passive: true });
+}
+
+function updateActiveNavLink(navLinks) {
     const sections = document.querySelectorAll('section');
     let current = '';
 
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        
+
         if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
@@ -52,139 +77,155 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
+}
 
 /* ===========================
-   Intersection observer
+   INTERSECTION OBSERVER
    for scroll animations
    =========================== */
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+function initializeIntersectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// observe all cards and section elements
-document.querySelectorAll('.card, .section-header').forEach(element => {
-    observer.observe(element);
-});
-
-/* ===========================
-   button interactions
-   =========================== */
-
-// shop now button click handler
-const shopButton = document.querySelector('.btn-primary');
-if (shopButton) {
-    shopButton.addEventListener('click', (e) => {
-        // Add ripple effect
-        const ripple = document.createElement('span');
-        const rect = shopButton.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        
-        shopButton.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
-    });
-}
-
-// read more links animation
-const readMoreLinks = document.querySelectorAll('.read-more');
-readMoreLinks.forEach(link => {
-    link.addEventListener('mouseenter', function() {
-        const arrow = this.querySelector('span');
-        arrow.style.display = 'inline-block';
-    });
-});
-
-/* ===========================
-   header shadow on scroll
-   =========================== */
-
-const header = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 0) {
-        header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.12)';
-    } else {
-        header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
-    }
-});
-
-/* ===========================
-   icon button animations
-   =========================== */
-
-const iconButtons = document.querySelectorAll('.icon-btn');
-iconButtons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-        const img = this.querySelector('.icon-img');
-        if (img) {
-            img.style.transform = 'scale(1.2)';
-        }
-    });
-
-    button.addEventListener('mouseleave', function() {
-        const img = this.querySelector('.icon-img');
-        if (img) {
-            img.style.transform = 'scale(1)';
-        }
-    });
-
-    button.addEventListener('click', function(e) {
-        // Prevent default and show feedback
-        e.preventDefault();
-        this.style.backgroundColor = 'rgba(228, 0, 27, 0.1)';
-        
-        setTimeout(() => {
-            this.style.backgroundColor = '';
-        }, 200);
-    });
-});
-
-/* ===========================
-   lazy load cards
-   =========================== */
-
-const lazyLoadCards = () => {
-    const cards = document.querySelectorAll('.card');
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = `fadeInUp 0.6s ease forwards`;
-                entry.target.style.animationDelay = `${index * 0.1}s`;
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, {
-        threshold: 0.1
+    }, observerOptions);
+
+    // Observe all cards
+    document.querySelectorAll('.card').forEach(card => {
+        observer.observe(card);
     });
-
-    cards.forEach(card => cardObserver.observe(card));
-};
-
-// initialize lazy loading when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', lazyLoadCards);
-} else {
-    lazyLoadCards();
 }
 
 /* ===========================
-   for smooth scroll animations
+   BUTTON INTERACTIONS
+   =========================== */
+
+function initializeButtonInteractions() {
+    const shopButton = document.querySelector('.btn-shop');
+
+    if (shopButton) {
+        shopButton.addEventListener('click', handleShopButtonClick);
+        shopButton.addEventListener('mouseenter', handleButtonHover);
+        shopButton.addEventListener('mouseleave', handleButtonLeave);
+    }
+
+    // Read more links animation
+    const readMoreLinks = document.querySelectorAll('.read-more');
+    readMoreLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            const arrow = this.querySelector('span');
+            if (arrow) {
+                arrow.style.display = 'inline-block';
+            }
+        });
+
+        link.addEventListener('click', handleReadMoreClick);
+    });
+}
+
+function handleShopButtonClick(e) {
+    // Add ripple effect
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.backgroundColor = 'rgba(228, 0, 27, 0.3)';
+    ripple.style.pointerEvents = 'none';
+    ripple.style.animation = 'ripple 0.6s ease-out';
+
+    this.style.position = 'relative';
+    this.style.overflow = 'hidden';
+    this.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+
+    console.log('Shop Now button clicked');
+}
+
+function handleButtonHover() {
+    this.style.transform = 'translateY(-2px)';
+}
+
+function handleButtonLeave() {
+    this.style.transform = 'translateY(0)';
+}
+
+function handleReadMoreClick(e) {
+    e.preventDefault();
+    console.log('Read more clicked:', this.textContent);
+    // Add your navigation or modal logic here
+}
+
+/* ===========================
+   ICON BUTTON ANIMATIONS
+   =========================== */
+
+function initializeIconAnimations() {
+    const iconButtons = document.querySelectorAll('.icon-btn');
+
+    iconButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            const img = this.querySelector('.icon-img');
+            if (img) {
+                img.style.transform = 'scale(1.2)';
+            }
+        });
+
+        button.addEventListener('mouseleave', function() {
+            const img = this.querySelector('.icon-img');
+            if (img) {
+                img.style.transform = 'scale(1)';
+            }
+        });
+
+        button.addEventListener('click', handleIconButtonClick);
+    });
+}
+
+function handleIconButtonClick(e) {
+    e.preventDefault();
+    
+    // Add visual feedback
+    this.style.backgroundColor = 'rgba(228, 0, 27, 0.1)';
+
+    setTimeout(() => {
+        this.style.backgroundColor = '';
+    }, 200);
+
+    const ariaLabel = this.getAttribute('aria-label');
+    console.log(`${ariaLabel} button clicked`);
+}
+
+/* ===========================
+   VIEWPORT HEIGHT FOR MOBILE
+   handles notches and mobile UI bars
+   =========================== */
+
+function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+}
+
+window.addEventListener('resize', setViewportHeight, { passive: true });
+
+/* ===========================
+   PARALLAX EFFECT ON HERO
    =========================== */
 
 let ticking = false;
@@ -192,13 +233,15 @@ let ticking = false;
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            // Parallax effect on hero (optional)
             const hero = document.querySelector('.hero');
             if (hero) {
                 const scrollTop = window.pageYOffset;
-                hero.style.backgroundPositionY = (scrollTop * 0.5) + 'px';
+                const heroBg = document.querySelector('.hero-background');
+                if (heroBg) {
+                    heroBg.style.backgroundPositionY = (scrollTop * 0.5) + 'px';
+                }
             }
-            
+
             ticking = false;
         });
         ticking = true;
@@ -206,20 +249,47 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ===========================
-   for mobile devices with mobile UI bars
+   UTILITY FUNCTIONS
    =========================== */
 
-const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', vh + 'px');
-};
+// Check if device is mobile
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
-setViewportHeight();
-window.addEventListener('resize', setViewportHeight);
+// Smooth scroll to element
+function smoothScrollTo(element) {
+    if (element) {
+        const offsetTop = element.offsetTop - 80; // Account for sticky header
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
 
 /* ===========================
-   console message
+   CONSOLE MESSAGING
    =========================== */
 
-console.log('%cLEGO Landing Page', 'font-size: 24px; font-weight: bold; color: #E4001B;');
-console.log('%cMobile-First Responsive Design | High Code Quality | Smooth Animations', 'font-size: 12px; color: #666;');
+console.log('%c✨ LEGO Landing Page ✨', 'font-size: 20px; font-weight: bold; color: #E4001B;');
+console.log('%cMobile-First | Responsive | Smooth Animations', 'font-size: 12px; color: #666; font-weight: 500;');
+console.log('%cDeveloped with modern HTML5, CSS3, and Vanilla JavaScript', 'font-size: 11px; color: #999;');
+
+/* ===========================
+   PERFORMANCE OPTIMIZATION
+   Disable animations on low-end devices
+   =========================== */
+
+if (isMobileDevice()) {
+    // Reduce animation complexity on mobile if needed
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            .card {
+                animation-duration: 0.3s !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
