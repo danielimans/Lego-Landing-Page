@@ -46,17 +46,17 @@ html {
     margin-right: auto;
 }
 
-.lego-logo {
-    width: 50px;
+/* Image adjustments for navbar */
+.lego-logo-img {
     height: 40px;
-    background-color: var(--lego-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 900;
-    font-size: 0.8rem;
-    border-radius: 2px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-custom-icon {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
 }
 
 .navbar-nav .nav-link {
@@ -93,19 +93,12 @@ html {
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    background-color: transparent;
 }
 
 .icon-search {
     background-color: #90EE90;
     color: white;
-}
-
-.icon-heart {
-    color: var(--lego-red);
-}
-
-.icon-bag {
-    color: var(--light-gray);
 }
 
 .navbar-icon:hover {
@@ -185,11 +178,12 @@ html {
     justify-content: center;
 }
 
-.hero-image img {
+.hero-banner-img {
     max-width: 100%;
     height: auto;
-    object-fit: contain;
-    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================
@@ -233,6 +227,7 @@ html {
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--white);
 }
 
 .card-item:hover {
@@ -284,15 +279,6 @@ html {
     color: var(--lego-red);
 }
 
-/* Card background colors */
-.card-blue-light .card-image {
-    background-color: var(--light-blue);
-}
-
-.card-blue-dark .card-image {
-    background-color: var(--dark-blue);
-}
-
 /* ==========================================
    FOOTER
    ========================================== */
@@ -341,20 +327,6 @@ footer {
 
 .footer-logo-section {
     margin-bottom: 2rem;
-}
-
-.footer-logo {
-    width: 50px;
-    height: 40px;
-    background-color: var(--lego-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 900;
-    font-size: 0.8rem;
-    border-radius: 2px;
-    margin-bottom: 1rem;
 }
 
 .footer-location {

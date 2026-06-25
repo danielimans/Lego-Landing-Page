@@ -5,24 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGO - What's on Sale?</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-lg">
             <a class="navbar-brand" href="#">
-                <div class="Assets/Lego-Logo.jpg">LEGO</div>
+                <img src="Lego-Logo.jpg" alt="LEGO Logo" class="lego-logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,17 +36,16 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="navbar-icon icon-heart" title="Wishlist">
-                        <i class="fas fa-heart"></i>
+                        <img src="Icon awesome-heart.png" alt="Wishlist" class="nav-custom-icon">
                     </div>
                     <div class="navbar-icon icon-bag" title="Shopping Bag">
-                        <i class="fas fa-shopping-bag"></i>
+                        <img src="Icon feather-shopping-bag.png" alt="Shopping Bag" class="nav-custom-icon">
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container-lg">
             <div class="hero-content">
@@ -61,16 +55,12 @@
                     <a href="#sale" class="btn-shop-now">Shop now</a>
                 </div>
                 <div class="hero-image">
-                    <!-- Placeholder for blue LEGO figure image -->
-                    <div style="width: 100%; height: 280px; background-color: var(--light-gray); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
-                        [LEGO Figure Image]
-                    </div>
+                    <img src="Main Banner.png" alt="Together, we can rebuild the world" class="img-fluid w-100 hero-banner-img">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Content Section -->
     <section class="content-section" id="shop">
         <div class="container-lg">
             <h2 class="section-title">Together, we can rebuild the world</h2>
@@ -79,11 +69,8 @@
             </p>
             
             <div class="cards-container">
-                <!-- Children Card -->
                 <div class="card-item card-blue-light">
-                    <div class="card-image" style="background-color: var(--light-blue); display: flex; align-items: center; justify-content: center;">
-                        [Children Image]
-                    </div>
+                    <img src="children.png" class="card-image" alt="Children">
                     <div class="card-content">
                         <h3>Children</h3>
                         <p>We believe every child should have an opportunity to achieve their potential. And learning through play is a powerful way to develop skills that will allow children to tackle challenges that lie ahead.</p>
@@ -91,11 +78,8 @@
                     </div>
                 </div>
 
-                <!-- Environment Card -->
                 <div class="card-item card-blue-dark">
-                    <div class="card-image" style="background-color: var(--dark-blue); display: flex; align-items: center; justify-content: center;">
-                        [Environment Image]
-                    </div>
+                    <img src="environment.png" class="card-image" alt="Environment">
                     <div class="card-content">
                         <h3>Environment</h3>
                         <p>We are committed to protecting the environment and the planet our children will inherit. It's not enough to just reduce our impact on the environment, we want to go further and have a positive impact.</p>
@@ -103,9 +87,8 @@
                     </div>
                 </div>
 
-                <!-- People Card -->
                 <div class="card-item card-blue-light">
-                    <div class="card-image" style="background-color: var(--light-blue); display: flex; align-items: center; justify-content: center;">
+                    <div class="card-image" style="background-color: var(--light-blue); display: flex; align-items: center; justify-content: center; color: #fff;">
                         [People Image]
                     </div>
                     <div class="card-content">
@@ -118,13 +101,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="about">
         <div class="container-lg">
             <div class="footer-content">
-                <!-- Left Column - Logo & Location -->
                 <div class="footer-column footer-logo-section">
-                    <div class="footer-logo">LEGO</div>
+                    <img src="Lego-Logo.jpg" alt="LEGO" class="footer-logo-img" style="height: 40px; width: auto; object-fit: contain; margin-bottom: 1rem;">
                     <div class="footer-location">
                         <i class="fas fa-map-marker-alt"></i>
                         Malaysia
@@ -135,7 +116,6 @@
                     </ul>
                 </div>
 
-                <!-- About Us -->
                 <div class="footer-column">
                     <h5>About Us</h5>
                     <ul>
@@ -149,7 +129,6 @@
                     </ul>
                 </div>
 
-                <!-- Support -->
                 <div class="footer-column">
                     <h5>Support</h5>
                     <ul>
@@ -163,7 +142,6 @@
                     </ul>
                 </div>
 
-                <!-- Attractions -->
                 <div class="footer-column">
                     <h5>Attractions</h5>
                     <ul>
@@ -173,7 +151,6 @@
                     </ul>
                 </div>
 
-                <!-- More From Us -->
                 <div class="footer-column">
                     <h5>More From Us</h5>
                     <ul>
@@ -186,7 +163,6 @@
                 </div>
             </div>
 
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p class="footer-text">&copy; 2024 The LEGO Group. All rights reserved.</p>
                 <div class="social-icons">
@@ -199,10 +175,8 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
