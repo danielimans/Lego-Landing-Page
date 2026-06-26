@@ -51,7 +51,6 @@ body {
     margin-right: 2rem;
 }
 
-/* FIX: constrain logo image size */
 .logo-image {
     width: 60px;
     height: 60px;
@@ -232,35 +231,51 @@ body {
 /* ===========================
    HERO SECTION
    =========================== */
+
+/* Section wraps the image naturally — no fixed min-height */
 .hero-section {
     position: relative;
     padding: 0;
-    min-height: 500px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
+    display: block;
+    background: none;
 }
 
-/* Dark overlay on top of image */
+/* NO dark overlay */
 .hero-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.40);
-    z-index: 1;
+    display: none;
 }
 
-.hero-section .container-fluid {
+/* Image container fills the section */
+.hero-image-container {
     position: relative;
-    z-index: 2;
     width: 100%;
+    padding: 0;
+    z-index: 0;
+    line-height: 0;
 }
 
-/* Text content sits above overlay */
+.hero-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Image stretches full width, natural height — no crop, no dark bars */
+.hero-character {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: unset;
+}
+
+/* Text floats over the image */
 .hero-content {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     z-index: 2;
-    padding: 5rem 3rem;
+    padding: 2rem 3rem;
     animation: fadeInLeft 0.8s ease 0.2s both;
 }
 
@@ -271,14 +286,14 @@ body {
 .hero-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-dark);
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .hero-subtitle {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.5;
 }
@@ -286,7 +301,7 @@ body {
 .btn-shop-now {
     background-color: var(--white);
     color: var(--text-dark);
-    border: none;
+    border: 2px solid var(--text-dark);
     padding: 0.75rem 2rem;
     font-weight: 600;
     border-radius: 4px;
@@ -304,36 +319,14 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* FIX: image covers the full hero, not just half */
-.hero-image-container {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-    z-index: 0;
-}
-
-.hero-image {
-    width: 100%;
-    height: 100%;
-}
-
-.hero-character {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
 @keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateX(-50px) translateY(-50%);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) translateY(-50%);
     }
 }
 
@@ -349,12 +342,8 @@ body {
 }
 
 @media (max-width: 991px) {
-    .hero-section {
-        min-height: 380px;
-    }
-
     .hero-content {
-        padding: 3rem 2rem;
+        padding: 1.5rem 2rem;
     }
 
     .hero-title {
@@ -367,25 +356,23 @@ body {
 }
 
 @media (max-width: 576px) {
-    .hero-section {
-        min-height: 300px;
-    }
-
     .hero-content {
-        padding: 2rem 1.5rem;
+        padding: 1rem 1.25rem;
     }
 
     .hero-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
     }
 
     .hero-subtitle {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
     }
 
     .btn-shop-now {
-        padding: 0.65rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -621,7 +608,6 @@ body {
     color: var(--white);
 }
 
-/* FIX: center social icons */
 .social-icons {
     display: flex;
     gap: 1.5rem;
