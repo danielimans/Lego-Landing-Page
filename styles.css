@@ -122,33 +122,37 @@ body {
     box-shadow: none;
 }
 
-/* ── Mobile: [hamburger] [logo-center] [icons] layout ── */
+/* ── Mobile: [hamburger] [logo] [icons] — all inline, no absolute ── */
 @media (max-width: 991px) {
     .navbar .container-fluid {
-        flex-wrap: nowrap;
+        display: flex;
+        flex-wrap: wrap;          /* allow collapse row to wrap below */
         align-items: center;
+        position: relative;
     }
 
-    /* Hamburger on the LEFT */
+    /* Hamburger — far LEFT */
     .navbar-toggler {
         order: 1;
-        margin-right: 0.25rem;
+        flex-shrink: 0;
+        margin-right: 0.5rem;
     }
 
-    /* Logo centered */
+    /* Logo — next to hamburger, NOT absolute */
     .navbar-brand {
         order: 2;
-        margin: 0 auto;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        position: static !important;   /* override any absolute from Bootstrap */
+        transform: none !important;
+        margin: 0 auto 0 0;            /* push icons to far right */
+        left: auto !important;
     }
 
-    /* Icons on the RIGHT */
+    /* Icons — far RIGHT */
     .nav-icons {
         order: 3;
-        margin-left: auto;
+        flex-shrink: 0;
         gap: 0.5rem !important;
+        margin-left: auto;
     }
 
     .icon-image {
@@ -156,14 +160,14 @@ body {
         height: 20px;
     }
 
-    /* Collapsed nav links drop below full width */
+    /* Collapsed nav links — full width row below the top bar */
     .navbar-collapse {
         order: 4;
         width: 100%;
         flex-basis: 100%;
         border-top: 1px solid var(--border-color);
         margin-top: 0.5rem;
-        padding-top: 0.5rem;
+        padding-top: 0.25rem;
     }
 
     .navbar-light .navbar-nav .nav-link {
@@ -566,6 +570,11 @@ body {
     /* Accordion item */
     .footer-accordion-item {
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Last item has no border — footer-bottom already provides the single divider */
+    .footer-accordion-item:last-child {
+        border-bottom: none;
     }
 
     .footer-accordion-btn {
