@@ -134,7 +134,6 @@ body {
     object-fit: contain;
 }
 
-/* Remove green background from search button */
 .search-btn {
     background: none;
     border: none;
@@ -547,7 +546,6 @@ body {
     margin-top: 4rem;
 }
 
-/* FIX: spread footer columns across the full row */
 .footer .row.py-5 {
     justify-content: space-between;
 }
