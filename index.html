@@ -18,18 +18,32 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container-fluid px-3 px-md-5">
-            <!-- Logo -->
-            <a class="navbar-brand" href="#home" aria-label="LEGO Home">
-                <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="logo-image">
-            </a>
-            
-            <!-- Hamburger Toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+            <!-- Hamburger Toggle (LEFT on mobile, hidden on desktop) -->
+            <button class="navbar-toggler border-0 d-lg-none order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <!-- Navigation Items -->
-            <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Logo (CENTER on mobile, LEFT on desktop) -->
+            <a class="navbar-brand order-2 order-lg-1 mx-auto mx-lg-0" href="#home" aria-label="LEGO Home">
+                <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="logo-image">
+            </a>
+
+            <!-- Right Icons — ALWAYS VISIBLE (order-3 on mobile, order-3 on desktop) -->
+            <div class="nav-icons d-flex gap-2 gap-md-3 align-items-center order-3 ms-auto ms-lg-0">
+                <button class="icon-btn search-btn" aria-label="Search" onclick="toggleSearch()">
+                    <img src="Assets/search.png" alt="Search" class="icon-image">
+                </button>
+                <button class="icon-btn wishlist-btn" aria-label="Wishlist">
+                    <img src="Assets/Icon awesome-heart.png" alt="Wishlist" class="icon-image">
+                </button>
+                <button class="icon-btn shopping-btn" aria-label="Shopping Bag">
+                    <img src="Assets/Icon feather-shopping-bag.png" alt="Shopping Bag" class="icon-image">
+                </button>
+            </div>
+
+            <!-- Navigation Items (collapse on mobile) -->
+            <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#home">Home</a>
@@ -51,19 +65,7 @@
                     </li>
                 </ul>
             </div>
-            
-            <!-- Right Icons -->
-            <div class="nav-icons d-flex gap-3 align-items-center">
-                <button class="icon-btn search-btn" aria-label="Search" onclick="toggleSearch()">
-                    <img src="Assets/search.png" alt="Search" class="icon-image">
-                </button>
-                <button class="icon-btn wishlist-btn" aria-label="Wishlist">
-                    <img src="Assets/Icon awesome-heart.png" alt="Wishlist" class="icon-image">
-                </button>
-                <button class="icon-btn shopping-btn" aria-label="Shopping Bag">
-                    <img src="Assets/Icon feather-shopping-bag.png" alt="Shopping Bag" class="icon-image">
-                </button>
-            </div>
+
         </div>
     </nav>
 
@@ -172,7 +174,9 @@
     <!-- Footer -->
     <footer class="footer" id="about">
         <div class="container-fluid px-3 px-md-5">
-            <div class="row py-5">
+
+            <!-- Desktop Footer -->
+            <div class="footer-desktop row py-5">
                 <!-- Footer Brand Section -->
                 <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
                     <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="footer-logo">
@@ -237,7 +241,96 @@
                 </div>
             </div>
 
-            <!-- Social Media Section -->
+            <!-- Mobile Footer Accordion -->
+            <div class="footer-mobile py-3">
+                <!-- Logo + location on mobile -->
+                <div class="footer-mobile-brand mb-3">
+                    <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="footer-logo">
+                    <div class="footer-location mt-3">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span>Malaysia</span>
+                    </div>
+                    <div class="mt-3">
+                        <a href="#" class="footer-link d-block mb-1">Find inspiration</a>
+                        <a href="#" class="footer-link d-block">LEGO Catalogues</a>
+                    </div>
+                </div>
+
+                <!-- Accordion sections -->
+                <div class="footer-accordion">
+                    <!-- About Us -->
+                    <div class="footer-accordion-item">
+                        <button class="footer-accordion-btn" data-target="footer-about">
+                            <span>About Us</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="footer-accordion-content" id="footer-about">
+                            <ul class="footer-links">
+                                <li><a href="#" class="footer-link">About the LEGO Group</a></li>
+                                <li><a href="#" class="footer-link">LEGO® news</a></li>
+                                <li><a href="#" class="footer-link">Sustainability</a></li>
+                                <li><a href="#" class="footer-link">Supply chain transparency statement</a></li>
+                                <li><a href="#" class="footer-link">LEGO product certification</a></li>
+                                <li><a href="#" class="footer-link">LEGO Jobs</a></li>
+                                <li><a href="#" class="footer-link">LEGO Compliance Line</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="footer-accordion-item">
+                        <button class="footer-accordion-btn" data-target="footer-support">
+                            <span>Support</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="footer-accordion-content" id="footer-support">
+                            <ul class="footer-links">
+                                <li><a href="#" class="footer-link">Contact us</a></li>
+                                <li><a href="#" class="footer-link">Find building instructions</a></li>
+                                <li><a href="#" class="footer-link">Replacement parts</a></li>
+                                <li><a href="#" class="footer-link">Deliveries and returns</a></li>
+                                <li><a href="#" class="footer-link">Payment methods</a></li>
+                                <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+                                <li><a href="#" class="footer-link">Product recalls</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Attractions -->
+                    <div class="footer-accordion-item">
+                        <button class="footer-accordion-btn" data-target="footer-attractions">
+                            <span>Attractions</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="footer-accordion-content" id="footer-attractions">
+                            <ul class="footer-links">
+                                <li><a href="#" class="footer-link">LEGO® House</a></li>
+                                <li><a href="#" class="footer-link">LEGOLAND® Parks</a></li>
+                                <li><a href="#" class="footer-link">LEGOLAND Discovery Centers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- More From Us -->
+                    <div class="footer-accordion-item">
+                        <button class="footer-accordion-btn" data-target="footer-more">
+                            <span>More From Us</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="footer-accordion-content" id="footer-more">
+                            <ul class="footer-links">
+                                <li><a href="#" class="footer-link">LEGO® LIFE</a></li>
+                                <li><a href="#" class="footer-link">LEGO Education</a></li>
+                                <li><a href="#" class="footer-link">LEGO Ideas</a></li>
+                                <li><a href="#" class="footer-link">LEGO Foundation</a></li>
+                                <li><a href="#" class="footer-link">LEGO® Braille Bricks</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section (shared) -->
             <div class="footer-bottom">
                 <div class="row align-items-center">
                     <div class="col-12 text-center">
@@ -259,5 +352,27 @@
     
     <!-- Custom JS -->
     <script src="script.js"></script>
+
+    <!-- Footer Accordion Script -->
+    <script>
+        document.querySelectorAll('.footer-accordion-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                const isOpen = content.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.footer-accordion-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.footer-accordion-btn i').forEach(i => i.classList.remove('rotated'));
+
+                // Toggle clicked
+                if (!isOpen) {
+                    content.classList.add('open');
+                    icon.classList.add('rotated');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
