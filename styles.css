@@ -134,7 +134,7 @@ body {
     object-fit: contain;
 }
 
-/* FIX: remove green background from search button */
+/* Remove green background from search button */
 .search-btn {
     background: none;
     border: none;
@@ -238,19 +238,16 @@ body {
     padding: 0;
     margin: 0;
     width: 100%;
-    /* FIX: fixed height so banner doesn't show too much empty space */
     height: 420px;
     overflow: hidden;
     display: flex;
     align-items: center;
 }
 
-/* No overlay */
 .hero-section::before {
     display: none;
 }
 
-/* FIX: image fills full width and height with cover cropping */
 .hero-image-container {
     position: absolute;
     inset: 0;
@@ -273,7 +270,6 @@ body {
     object-position: center center;
 }
 
-/* Text floats above the image */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -549,6 +545,11 @@ body {
     color: var(--white);
     padding: 3rem 0 2rem;
     margin-top: 4rem;
+}
+
+/* FIX: spread footer columns across the full row */
+.footer .row.py-5 {
+    justify-content: space-between;
 }
 
 .footer-logo {
