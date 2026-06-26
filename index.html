@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome for Icons (fallback) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
@@ -19,8 +19,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container-fluid px-3 px-md-5">
             <!-- Logo -->
-            <a class="navbar-brand" href="#" aria-label="LEGO Home">
-                <div class="logo-box">LEGO</div>
+            <a class="navbar-brand" href="#home" aria-label="LEGO Home">
+                <img src="assets/Lego-Logo.jpg" alt="LEGO Logo" class="logo-image">
             </a>
             
             <!-- Hamburger Toggle -->
@@ -55,13 +55,13 @@
             <!-- Right Icons -->
             <div class="nav-icons d-flex gap-3 align-items-center">
                 <button class="icon-btn search-btn" aria-label="Search" onclick="toggleSearch()">
-                    <i class="fas fa-search"></i>
+                    <img src="assets/search.png" alt="Search" class="icon-image">
                 </button>
                 <button class="icon-btn wishlist-btn" aria-label="Wishlist">
-                    <i class="far fa-heart"></i>
+                    <img src="assets/Icon_awesome-heart.png" alt="Wishlist" class="icon-image">
                 </button>
-                <button class="icon-btn instagram-btn" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
+                <button class="icon-btn shopping-btn" aria-label="Shopping Bag">
+                    <img src="assets/Icon_feather-shopping-bag.png" alt="Shopping Bag" class="icon-image">
                 </button>
             </div>
         </div>
@@ -73,7 +73,7 @@
             <div class="input-group search-input-group">
                 <input type="text" class="form-control" placeholder="Search for products...">
                 <button class="btn btn-search" type="button">
-                    <i class="fas fa-search"></i>
+                    <img src="assets/search.png" alt="Search" class="search-icon-small">
                 </button>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 <!-- Right Hero Image -->
                 <div class="col-12 col-lg-6 hero-image-container">
                     <div class="hero-image">
-                        <img src="https://via.placeholder.com/400x400/0099ff/ffffff?text=LEGO+Character" alt="LEGO Character" class="hero-character">
+                        <img src="assets/Main_Banner.png" alt="LEGO Character" class="hero-character">
                     </div>
                 </div>
             </div>
@@ -119,11 +119,11 @@
 
             <!-- Cards Grid -->
             <div class="row g-4">
-                <!-- Card 1 -->
+                <!-- Card 1: Children -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="mission-card">
                         <div class="card-image-container">
-                            <img src="https://via.placeholder.com/300x250/66CCFF/ffffff?text=Children" alt="Children Initiative" class="card-image">
+                            <img src="assets/children.png" alt="Children Initiative" class="card-image">
                         </div>
                         <h3 class="card-title">Children</h3>
                         <p class="card-text">
@@ -135,11 +135,11 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card 2: Environment -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="mission-card">
                         <div class="card-image-container">
-                            <img src="https://via.placeholder.com/300x250/0066CC/ffffff?text=Environment" alt="Environment Initiative" class="card-image">
+                            <img src="assets/environment.png" alt="Environment Initiative" class="card-image">
                         </div>
                         <h3 class="card-title">Environment</h3>
                         <p class="card-text">
@@ -151,11 +151,11 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Card 3: People -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="mission-card">
                         <div class="card-image-container">
-                            <img src="https://via.placeholder.com/300x250/99CCFF/ffffff?text=People" alt="People Initiative" class="card-image">
+                            <img src="assets/people.png" alt="People Initiative" class="card-image">
                         </div>
                         <h3 class="card-title">People</h3>
                         <p class="card-text">
@@ -175,7 +175,7 @@
             <div class="row py-5">
                 <!-- Footer Brand Section -->
                 <div class="col-12 col-md-6 col-lg-2 mb-4 mb-lg-0">
-                    <div class="footer-logo">LEGO</div>
+                    <img src="assets/Lego-Logo.jpg" alt="LEGO Logo" class="footer-logo">
                     <div class="footer-location mt-4">
                         <i class="fas fa-map-marker-alt me-2"></i>
                         <span>Malaysia</span>
