@@ -12,24 +12,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container-fluid px-3 px-md-5">
 
-            <!-- Hamburger Toggle (LEFT on mobile, hidden on desktop) -->
+            <!-- Hamburger Toggle -->
             <button class="navbar-toggler border-0 d-lg-none order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Logo (LEFT on mobile too, beside hamburger) -->
+            <!-- Logo -->
             <a class="navbar-brand order-2 order-lg-1" href="#home" aria-label="LEGO Home">
                 <img src="Assets/Lego-Logo.jpg" alt="LEGO Logo" class="logo-image">
             </a>
 
-            <!-- Right Icons — ALWAYS VISIBLE (order-3 on mobile, order-3 on desktop) -->
+            <!-- Right Icons -->
             <div class="nav-icons d-flex gap-2 gap-md-3 align-items-center order-3 ms-auto ms-lg-0">
                 <button class="icon-btn search-btn" aria-label="Search" onclick="toggleSearch()">
                     <img src="Assets/search.png" alt="Search" class="icon-image">
@@ -42,7 +42,7 @@
                 </button>
             </div>
 
-            <!-- Navigation Items (collapse on mobile) -->
+            <!-- Navigation Items -->
             <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -330,7 +330,7 @@
                 </div>
             </div>
 
-            <!-- Social Media Section (shared) -->
+            <!-- Social Media Section -->
             <div class="footer-bottom">
                 <div class="row align-items-center">
                     <div class="col-12 text-center">
@@ -351,7 +351,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="JS/script.js"></script>
 
     <!-- Footer Accordion Script -->
     <script>
@@ -362,11 +362,11 @@
                 const icon = this.querySelector('i');
                 const isOpen = content.classList.contains('open');
 
-                // Close all
+                // close all
                 document.querySelectorAll('.footer-accordion-content').forEach(c => c.classList.remove('open'));
                 document.querySelectorAll('.footer-accordion-btn i').forEach(i => i.classList.remove('rotated'));
 
-                // Toggle clicked
+                // toggle clicked
                 if (!isOpen) {
                     content.classList.add('open');
                     icon.classList.add('rotated');
