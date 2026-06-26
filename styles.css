@@ -619,6 +619,17 @@ body {
     color: var(--white);
 }
 
+.footer .row.py-5 {
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer .row.py-5 > div:first-child {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 120px;
+    max-width: 160px;
+}
 .social-icons {
     display: flex;
     gap: 1.5rem;
