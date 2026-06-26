@@ -1,224 +1,413 @@
-/* ==========================================
-   LEGO Landing Page - JavaScript
-   ========================================== */
-
 /**
- * Smooth scroll for anchor links
- * Handles navigation to different sections with smooth animation
+ * Landing Page - Main JavaScript File
+ * Handles interactivity, animations, and user interactions
  */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Close mobile menu if open
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                navbarToggler.click();
+
+// ========================================
+// DOM READY EVENT
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+});
+
+// ========================================
+// INITIALIZATION
+// ========================================
+function initializeApp() {
+    setupEventListeners();
+    setupScrollAnimations();
+    setupMobileNavigation();
+}
+
+// ========================================
+// EVENT LISTENERS
+// ========================================
+function setupEventListeners() {
+    // Search button toggle
+    const searchBtn = document.querySelector('.search-btn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', toggleSearch);
+    }
+
+    // Wishlist button
+    const wishlistBtn = document.querySelector('.wishlist-btn');
+    if (wishlistBtn) {
+        wishlistBtn.addEventListener('click', toggleWishlist);
+    }
+
+    // Shop Now button
+    const shopNowBtn = document.querySelector('.btn-shop-now');
+    if (shopNowBtn) {
+        shopNowBtn.addEventListener('click', handleShopNowClick);
+    }
+
+    // Smooth scroll for internal links
+    setupSmoothScroll();
+
+    // Handle window resize for responsive behavior
+    window.addEventListener('resize', debounce(handleWindowResize, 250));
+}
+
+// ========================================
+// SEARCH FUNCTIONALITY
+// ========================================
+function toggleSearch() {
+    const searchBar = document.getElementById('searchBar');
+    if (searchBar) {
+        searchBar.classList.toggle('active');
+        
+        // Focus on search input when opened
+        if (searchBar.classList.contains('active')) {
+            const searchInput = searchBar.querySelector('.form-control');
+            if (searchInput) {
+                setTimeout(() => searchInput.focus(), 100);
             }
         }
-    });
-});
-
-/**
- * Active navigation link highlight
- * Highlights the current section being viewed
- */
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    document.querySelectorAll('section').forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-/**
- * Add active class styling for current page
- * CSS needs to include: .navbar-nav .nav-link.active { ... }
- */
-const style = document.createElement('style');
-style.textContent = `
-    .navbar-nav .nav-link.active {
-        color: var(--lego-red) !important;
-        border-bottom: 2px solid var(--lego-red);
     }
-`;
-document.head.appendChild(style);
+}
 
-/**
- * Card animation on scroll
- * Cards fade in and lift when they come into view
- */
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Expose toggleSearch to global scope for HTML onclick
+window.toggleSearch = toggleSearch;
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            // Add animation with staggered delay
-            entry.target.style.animation = `
-                fadeInUp 0.6s ease-out ${index * 0.1}s forwards
-            `;
-            entry.target.style.opacity = '0';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-/**
- * Apply observer to card elements
- */
-document.querySelectorAll('.card-item').forEach(card => {
-    observer.observe(card);
-});
-
-/**
- * Scroll to top button functionality
- * Shows when user scrolls down, scrolls page back to top when clicked
- */
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.id = 'scrollTopBtn';
-scrollTopBtn.innerHTML = '↑';
-scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--lego-red);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    z-index: 999;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    width: 50px;
-    height: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-`;
-
-document.body.appendChild(scrollTopBtn);
-
-// Show/hide scroll to top button
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.style.display = 'flex';
-        scrollTopBtn.style.alignItems = 'center';
-        scrollTopBtn.style.justifyContent = 'center';
+// ========================================
+// WISHLIST FUNCTIONALITY
+// ========================================
+function toggleWishlist(event) {
+    const btn = event.currentTarget;
+    const icon = btn.querySelector('i');
+    
+    // Toggle between far (empty) and fas (filled) heart
+    if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        btn.style.color = '#E74C3C';
+        showNotification('Added to wishlist!', 'success');
     } else {
-        scrollTopBtn.style.display = 'none';
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        btn.style.color = 'inherit';
+        showNotification('Removed from wishlist', 'info');
     }
-});
+}
 
-// Scroll to top when button clicked
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-    });
-});
-
-// Hover effect for scroll button
-scrollTopBtn.addEventListener('mouseenter', () => {
-    scrollTopBtn.style.transform = 'scale(1.1)';
-    scrollTopBtn.style.backgroundColor = '#C40014';
-});
-
-scrollTopBtn.addEventListener('mouseleave', () => {
-    scrollTopBtn.style.transform = 'scale(1)';
-    scrollTopBtn.style.backgroundColor = 'var(--lego-red)';
-});
-
-/**
- * Add keyframe animation for card fade-in
- * This animation is referenced in the observer code above
- */
-const animationStyle = document.createElement('style');
-animationStyle.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(animationStyle);
-
-/**
- * Navbar icon interactions
- * Add click handlers for search, heart, and shopping bag icons
- */
-document.querySelectorAll('.navbar-icon').forEach(icon => {
-    icon.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Add click animation
-        this.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-        
-        // Determine which icon was clicked
-        if (this.classList.contains('icon-search')) {
-            console.log('Search clicked');
-            // Add search functionality here
-        } else if (this.classList.contains('icon-heart')) {
-            console.log('Wishlist clicked');
-            // Add wishlist functionality here
-        } else if (this.classList.contains('icon-bag')) {
-            console.log('Shopping bag clicked');
-            // Add shopping bag functionality here
-        }
-    });
-});
-
-/**
- * Mobile menu close on link click
- * Already handled in smooth scroll section above
- */
-
-/**
- * Initialize page
- * Run setup functions when DOM is loaded
- */
-document.addEventListener('DOMContentLoaded', () => {
-    // Add loading class to body
-    document.body.classList.add('page-loaded');
+// ========================================
+// SHOP NOW BUTTON
+// ========================================
+function handleShopNowClick(event) {
+    event.preventDefault();
+    showNotification('Redirecting to shop...', 'info');
     
-    // Log to console for debugging (remove in production)
-    console.log('LEGO Landing Page loaded successfully');
-});
+    // Simulate navigation after delay
+    setTimeout(() => {
+        // In a real application, this would navigate to the shop page
+        console.log('Navigate to shop');
+    }, 500);
+}
+
+// ========================================
+// SMOOTH SCROLL FOR INTERNAL LINKS
+// ========================================
+function setupSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if href is just "#"
+            if (href === '#' || href === '#!') {
+                return;
+            }
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                const navbar = document.querySelector('.navbar-collapse');
+                if (navbar && navbar.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbar, {
+                        toggle: true
+                    });
+                }
+                
+                // Smooth scroll to target
+                const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ========================================
+// SCROLL ANIMATIONS
+// ========================================
+function setupScrollAnimations() {
+    // Check if Intersection Observer is supported
+    if (!('IntersectionObserver' in window)) {
+        console.log('IntersectionObserver not supported');
+        return;
+    }
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-visible');
+                
+                // Optional: Stop observing after animation
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all elements with animation classes
+    const animatedElements = document.querySelectorAll(
+        '.mission-card, .section-title, .section-description'
+    );
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// ========================================
+// MOBILE NAVIGATION
+// ========================================
+function setupMobileNavigation() {
+    const navLinks = document.querySelectorAll('.navbar-collapse .nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    // Close mobile menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+            }
+        });
+    });
+}
+
+// ========================================
+// WINDOW RESIZE HANDLER
+// ========================================
+function handleWindowResize() {
+    // Close search bar on smaller screens if needed
+    const searchBar = document.getElementById('searchBar');
+    if (window.innerWidth < 768 && searchBar) {
+        searchBar.classList.remove('active');
+    }
+}
+
+// ========================================
+// UTILITY FUNCTIONS
+// ========================================
 
 /**
- * Unobtrusive error handling
- * Gracefully handle any JavaScript errors
+ * Debounce function to limit function calls
+ * @param {Function} func - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} - Debounced function
  */
-window.addEventListener('error', (event) => {
-    console.error('JavaScript Error:', event.error);
+function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+/**
+ * Show notification toast
+ * @param {string} message - Message to display
+ * @param {string} type - Type: 'success', 'error', 'info', 'warning'
+ */
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span>${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Add styles if not already in CSS
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.innerHTML = `
+            .notification {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                padding: 1rem;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 9999;
+                animation: slideInRight 0.3s ease;
+                max-width: 400px;
+                min-width: 280px;
+            }
+            
+            .notification-success {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            .notification-error {
+                background-color: #f44336;
+                color: white;
+            }
+            
+            .notification-info {
+                background-color: #2196F3;
+                color: white;
+            }
+            
+            .notification-warning {
+                background-color: #ff9800;
+                color: white;
+            }
+            
+            .notification-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .notification-close {
+                background: none;
+                border: none;
+                color: inherit;
+                cursor: pointer;
+                padding: 0;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                transition: all 0.2s ease;
+            }
+            
+            .notification-close:hover {
+                transform: scale(1.2);
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @media (max-width: 576px) {
+                .notification {
+                    bottom: 10px;
+                    right: 10px;
+                    left: 10px;
+                    max-width: none;
+                    min-width: auto;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add notification to page
+    document.body.appendChild(notification);
+    
+    // Remove notification after 4 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 4000);
+}
+
+// ========================================
+// NAVBAR SCROLL EFFECT
+// ========================================
+window.addEventListener('scroll', debounce(function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        if (!navbar.classList.contains('scrolled')) {
+            navbar.classList.add('scrolled');
+            navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.12)';
+        }
+    } else {
+        navbar.classList.remove('scrolled');
+        navbar.style.boxShadow = 'none';
+    }
+}, 100));
+
+// ========================================
+// LAZY LOADING IMAGES (Optional)
+// ========================================
+function setupLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// ========================================
+// KEYBOARD NAVIGATION
+// ========================================
+document.addEventListener('keydown', function(e) {
+    // Close search bar with Escape key
+    if (e.key === 'Escape') {
+        const searchBar = document.getElementById('searchBar');
+        if (searchBar && searchBar.classList.contains('active')) {
+            toggleSearch();
+        }
+    }
+});
+
+// ========================================
+// ANALYTICS TRACKING (Optional)
+// ========================================
+function trackEvent(eventName, eventData = {}) {
+    // This is a placeholder for analytics tracking
+    // In production, you would send this to your analytics service
+    console.log('Event tracked:', eventName, eventData);
+}
+
+// Track page interactions
+document.addEventListener('click', function(e) {
+    const target = e.target.closest('a, button');
+    if (target) {
+        const text = target.textContent.trim();
+        if (text) {
+            trackEvent('click', { element: target.tagName, text: text });
+        }
+    }
 });
