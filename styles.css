@@ -134,17 +134,19 @@ body {
     object-fit: contain;
 }
 
+/* FIX: remove green background from search button */
 .search-btn {
-    background-color: #5FCC5C;
-    color: var(--white) !important;
+    background: none;
+    border: none;
     border-radius: 50%;
     width: 36px;
     height: 36px;
     font-size: 1rem;
+    padding: 0.25rem;
 }
 
 .search-btn:hover {
-    background-color: #4aad47;
+    background: none;
     transform: scale(1.1);
 }
 
@@ -231,49 +233,49 @@ body {
 /* ===========================
    HERO SECTION
    =========================== */
-
-/* Section wraps the image naturally — no fixed min-height */
 .hero-section {
     position: relative;
     padding: 0;
+    margin: 0;
+    width: 100%;
+    /* FIX: fixed height so banner doesn't show too much empty space */
+    height: 420px;
     overflow: hidden;
-    display: block;
-    background: none;
+    display: flex;
+    align-items: center;
 }
 
-/* NO dark overlay */
+/* No overlay */
 .hero-section::before {
     display: none;
 }
 
-/* Image container fills the section */
+/* FIX: image fills full width and height with cover cropping */
 .hero-image-container {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
     padding: 0;
     z-index: 0;
-    line-height: 0;
 }
 
 .hero-image {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
-/* Image stretches full width, natural height — no crop, no dark bars */
 .hero-character {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    object-fit: unset;
+    object-fit: cover;
+    object-position: center center;
 }
 
-/* Text floats over the image */
+/* Text floats above the image */
 .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
+    position: relative;
     z-index: 2;
     padding: 2rem 3rem;
     animation: fadeInLeft 0.8s ease 0.2s both;
@@ -322,11 +324,11 @@ body {
 @keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(-50px) translateY(-50%);
+        transform: translateX(-50px);
     }
     to {
         opacity: 1;
-        transform: translateX(0) translateY(-50%);
+        transform: translateX(0);
     }
 }
 
@@ -342,6 +344,10 @@ body {
 }
 
 @media (max-width: 991px) {
+    .hero-section {
+        height: 320px;
+    }
+
     .hero-content {
         padding: 1.5rem 2rem;
     }
@@ -356,18 +362,22 @@ body {
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        height: 220px;
+    }
+
     .hero-content {
         padding: 1rem 1.25rem;
     }
 
     .hero-title {
         font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
     }
 
     .hero-subtitle {
         font-size: 0.8rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .btn-shop-now {
