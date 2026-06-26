@@ -94,7 +94,6 @@ function handleShopNowClick(event) {
     
     // simulate navigation after delay
     setTimeout(() => {
-        // In a real application, this would navigate to the shop page
         console.log('Navigate to shop');
     }, 500);
 }

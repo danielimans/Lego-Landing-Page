@@ -86,7 +86,7 @@ body {
     width: 60%;
 }
 
-/* ── Icon Buttons (always visible) ── */
+/* ── Icon Buttons ── */
 .nav-icons {
     flex-shrink: 0;
 }
@@ -112,7 +112,7 @@ body {
     object-fit: contain;
 }
 
-/* Hamburger — LEFT on mobile */
+/* Hamburger Toggle*/
 .navbar-toggler {
     padding: 0.3rem 0.5rem;
     order: 1;
@@ -122,32 +122,32 @@ body {
     box-shadow: none;
 }
 
-/* ── Mobile: [hamburger] [logo] [icons] — all inline, no absolute ── */
+/* ── Mobile ── */
 @media (max-width: 991px) {
     .navbar .container-fluid {
         display: flex;
-        flex-wrap: wrap;          /* allow collapse row to wrap below */
+        flex-wrap: wrap;          
         align-items: center;
         position: relative;
     }
 
-    /* Hamburger — far LEFT */
+    /* Hamburger */
     .navbar-toggler {
         order: 1;
         flex-shrink: 0;
         margin-right: 0.5rem;
     }
 
-    /* Logo — next to hamburger, NOT absolute */
+    /* Logo */
     .navbar-brand {
         order: 2;
-        position: static !important;   /* override any absolute from Bootstrap */
+        position: static !important;  
         transform: none !important;
-        margin: 0 auto 0 0;            /* push icons to far right */
+        margin: 0 auto 0 0;            
         left: auto !important;
     }
 
-    /* Icons — far RIGHT */
+    /* Icons */
     .nav-icons {
         order: 3;
         flex-shrink: 0;
@@ -160,7 +160,7 @@ body {
         height: 20px;
     }
 
-    /* Collapsed nav links — full width row below the top bar */
+    /* Collapsed nav links */
     .navbar-collapse {
         order: 4;
         width: 100%;
@@ -180,7 +180,6 @@ body {
         border-bottom: none;
     }
 
-    /* Remove underline animation on mobile */
     .navbar-light .navbar-nav .nav-link::after {
         display: none;
     }
@@ -496,7 +495,7 @@ body {
     margin: 0;
 }
 
-/* Footer Bottom — social */
+/* Footer Bottom */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
     padding: 2rem 0;
@@ -572,7 +571,6 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* Last item has no border — footer-bottom already provides the single divider */
     .footer-accordion-item:last-child {
         border-bottom: none;
     }
