@@ -1,62 +1,57 @@
-/**
- * Landing Page - Main JavaScript File
- * Handles interactivity, animations, and user interactions
- */
-
-// ========================================
+// =======================
 // DOM READY EVENT
-// ========================================
+// =======================
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-// ========================================
+// =======================
 // INITIALIZATION
-// ========================================
+// =======================
 function initializeApp() {
     setupEventListeners();
     setupScrollAnimations();
     setupMobileNavigation();
 }
 
-// ========================================
+// ======================
 // EVENT LISTENERS
-// ========================================
+// ======================
 function setupEventListeners() {
-    // Search button toggle
+    // search button toggle
     const searchBtn = document.querySelector('.search-btn');
     if (searchBtn) {
         searchBtn.addEventListener('click', toggleSearch);
     }
 
-    // Wishlist button
+    // wishlist button
     const wishlistBtn = document.querySelector('.wishlist-btn');
     if (wishlistBtn) {
         wishlistBtn.addEventListener('click', toggleWishlist);
     }
 
-    // Shop Now button
+    // shop now button
     const shopNowBtn = document.querySelector('.btn-shop-now');
     if (shopNowBtn) {
         shopNowBtn.addEventListener('click', handleShopNowClick);
     }
 
-    // Smooth scroll for internal links
+    // smooth scroll for internal links
     setupSmoothScroll();
 
-    // Handle window resize for responsive behavior
+    // handle window resize for responsive behavior
     window.addEventListener('resize', debounce(handleWindowResize, 250));
 }
 
-// ========================================
+// ===========================
 // SEARCH FUNCTIONALITY
-// ========================================
+// ===========================
 function toggleSearch() {
     const searchBar = document.getElementById('searchBar');
     if (searchBar) {
         searchBar.classList.toggle('active');
         
-        // Focus on search input when opened
+        // focus on search input when opened
         if (searchBar.classList.contains('active')) {
             const searchInput = searchBar.querySelector('.form-control');
             if (searchInput) {
@@ -66,17 +61,17 @@ function toggleSearch() {
     }
 }
 
-// Expose toggleSearch to global scope for HTML onclick
+// expose toggleSearch to global scope for HTML onclick
 window.toggleSearch = toggleSearch;
 
-// ========================================
+// =============================
 // WISHLIST FUNCTIONALITY
-// ========================================
+// =============================
 function toggleWishlist(event) {
     const btn = event.currentTarget;
     const icon = btn.querySelector('i');
     
-    // Toggle between far (empty) and fas (filled) heart
+    // toggle between far (empty) and fas (filled) heart
     if (icon.classList.contains('far')) {
         icon.classList.remove('far');
         icon.classList.add('fas');
@@ -90,14 +85,14 @@ function toggleWishlist(event) {
     }
 }
 
-// ========================================
+// =======================
 // SHOP NOW BUTTON
-// ========================================
+// =======================
 function handleShopNowClick(event) {
     event.preventDefault();
     showNotification('Redirecting to shop...', 'info');
     
-    // Simulate navigation after delay
+    // simulate navigation after delay
     setTimeout(() => {
         // In a real application, this would navigate to the shop page
         console.log('Navigate to shop');
@@ -114,7 +109,7 @@ function setupSmoothScroll() {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // Skip if href is just "#"
+            // skip if href is just "#"
             if (href === '#' || href === '#!') {
                 return;
             }
@@ -123,7 +118,7 @@ function setupSmoothScroll() {
             if (target) {
                 e.preventDefault();
                 
-                // Close mobile menu if open
+                // close mobile menu if open
                 const navbar = document.querySelector('.navbar-collapse');
                 if (navbar && navbar.classList.contains('show')) {
                     const bsCollapse = new bootstrap.Collapse(navbar, {
@@ -131,7 +126,7 @@ function setupSmoothScroll() {
                     });
                 }
                 
-                // Smooth scroll to target
+                // smooth scroll to target
                 const offsetTop = target.offsetTop - 80; // Account for fixed navbar
                 window.scrollTo({
                     top: offsetTop,
@@ -142,11 +137,11 @@ function setupSmoothScroll() {
     });
 }
 
-// ========================================
+// ==========================
 // SCROLL ANIMATIONS
-// ========================================
+// ==========================
 function setupScrollAnimations() {
-    // Check if Intersection Observer is supported
+    // check if Intersection Observer is supported
     if (!('IntersectionObserver' in window)) {
         console.log('IntersectionObserver not supported');
         return;
@@ -162,13 +157,11 @@ function setupScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-visible');
                 
-                // Optional: Stop observing after animation
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Observe all elements with animation classes
     const animatedElements = document.querySelectorAll(
         '.mission-card, .section-title, .section-description'
     );
@@ -178,14 +171,14 @@ function setupScrollAnimations() {
     });
 }
 
-// ========================================
+// =========================
 // MOBILE NAVIGATION
-// ========================================
+// =========================
 function setupMobileNavigation() {
     const navLinks = document.querySelectorAll('.navbar-collapse .nav-link');
     const navbarCollapse = document.querySelector('.navbar-collapse');
     
-    // Close mobile menu when a link is clicked
+    // close mobile menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (navbarCollapse.classList.contains('show')) {
@@ -197,20 +190,20 @@ function setupMobileNavigation() {
     });
 }
 
-// ========================================
+// ===========================
 // WINDOW RESIZE HANDLER
-// ========================================
+// ===========================
 function handleWindowResize() {
-    // Close search bar on smaller screens if needed
+    // close search bar on smaller screens if needed
     const searchBar = document.getElementById('searchBar');
     if (window.innerWidth < 768 && searchBar) {
         searchBar.classList.remove('active');
     }
 }
 
-// ========================================
+// ========================
 // UTILITY FUNCTIONS
-// ========================================
+// ========================
 
 /**
  * Debounce function to limit function calls
@@ -232,7 +225,7 @@ function debounce(func, delay) {
  * @param {string} type - Type: 'success', 'error', 'info', 'warning'
  */
 function showNotification(message, type = 'info') {
-    // Create notification element
+    // create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -244,7 +237,7 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add styles if not already in CSS
+    // add styles if not already in CSS
     if (!document.getElementById('notification-styles')) {
         const style = document.createElement('style');
         style.id = 'notification-styles';
@@ -329,19 +322,19 @@ function showNotification(message, type = 'info') {
         document.head.appendChild(style);
     }
     
-    // Add notification to page
+    // add notification to page
     document.body.appendChild(notification);
     
-    // Remove notification after 4 seconds
+    // remove notification after 4 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     }, 4000);
 }
 
-// ========================================
+// ========================
 // NAVBAR SCROLL EFFECT
-// ========================================
+// ========================
 window.addEventListener('scroll', debounce(function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -355,9 +348,9 @@ window.addEventListener('scroll', debounce(function() {
     }
 }, 100));
 
-// ========================================
-// LAZY LOADING IMAGES (Optional)
-// ========================================
+// =========================
+// LAZY LOADING IMAGES 
+// =========================
 function setupLazyLoading() {
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -379,11 +372,11 @@ function setupLazyLoading() {
     }
 }
 
-// ========================================
+// =========================
 // KEYBOARD NAVIGATION
-// ========================================
+// =========================
 document.addEventListener('keydown', function(e) {
-    // Close search bar with Escape key
+    // close search bar with Escape key
     if (e.key === 'Escape') {
         const searchBar = document.getElementById('searchBar');
         if (searchBar && searchBar.classList.contains('active')) {
@@ -392,16 +385,14 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// ========================================
-// ANALYTICS TRACKING (Optional)
-// ========================================
+// ========================
+// ANALYTICS TRACKING 
+// ========================
 function trackEvent(eventName, eventData = {}) {
-    // This is a placeholder for analytics tracking
-    // In production, you would send this to your analytics service
     console.log('Event tracked:', eventName, eventData);
 }
 
-// Track page interactions
+// track page interactions
 document.addEventListener('click', function(e) {
     const target = e.target.closest('a, button');
     if (target) {
